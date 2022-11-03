@@ -1,0 +1,1 @@
+pyinstaller -F Main_Flow_sensor.py

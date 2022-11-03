@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<!-- saved from url=(0064)https://bronkhorst-propar.readthedocs.io/en/latest/examples.html -->
+<html class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths" lang="en" style=""><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Examples — bronkhorst-propar 1.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" async="" src="./Examples — bronkhorst-propar 1.0.1 documentation_files/analytics.js.Без названия"></script><script type="text/javascript" src="./Examples — bronkhorst-propar 1.0.1 documentation_files/modernizr.min.js.Без названия"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="./Examples — bronkhorst-propar 1.0.1 documentation_files/documentation_options.js.Без названия"></script>
+        <script type="text/javascript" src="./Examples — bronkhorst-propar 1.0.1 documentation_files/jquery.js.Без названия"></script>
+        <script type="text/javascript" src="./Examples — bronkhorst-propar 1.0.1 documentation_files/underscore.js.Без названия"></script>
+        <script type="text/javascript" src="./Examples — bronkhorst-propar 1.0.1 documentation_files/doctools.js.Без названия"></script>
+        <script type="text/javascript" src="./Examples — bronkhorst-propar 1.0.1 documentation_files/language_data.js.Без названия"></script>
+        <script async="async" type="text/javascript" src="./Examples — bronkhorst-propar 1.0.1 documentation_files/readthedocs-doc-embed.js.Без названия"></script>
+    
+    <script type="text/javascript" src="./Examples — bronkhorst-propar 1.0.1 documentation_files/theme.js.Без названия"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="./Examples — bronkhorst-propar 1.0.1 documentation_files/theme.css" type="text/css">
+  <link rel="stylesheet" href="./Examples — bronkhorst-propar 1.0.1 documentation_files/pygments.css" type="text/css">
+    <link rel="index" title="Index" href="https://bronkhorst-propar.readthedocs.io/en/latest/genindex.html">
+    <link rel="search" title="Search" href="https://bronkhorst-propar.readthedocs.io/en/latest/search.html">
+    <link rel="next" title="Propar API" href="https://bronkhorst-propar.readthedocs.io/en/latest/propar.html">
+    <link rel="prev" title="Introduction" href="https://bronkhorst-propar.readthedocs.io/en/latest/introduction.html"> 
+
+<!-- RTD Extra Head -->
+
+<link rel="stylesheet" href="./Examples — bronkhorst-propar 1.0.1 documentation_files/readthedocs-doc-embed.css" type="text/css">
+
+<script type="application/json" id="READTHEDOCS_DATA">{"ad_free": false, "api_host": "https://readthedocs.org", "build_date": "2022-10-24T08:28:26Z", "builder": "sphinx", "canonical_url": null, "commit": "29ccb762", "docroot": "/docs/", "features": {"docsearch_disabled": false}, "global_analytics_code": "UA-17997319-1", "language": "en", "page": "examples", "programming_language": "words", "project": "bronkhorst-propar", "proxied_api_host": "/_", "source_suffix": ".rst", "subprojects": {}, "theme": "sphinx_rtd_theme", "user_analytics_code": "", "version": "latest"}</script>
+
+<!--
+Using this variable directly instead of using `JSON.parse` is deprecated.
+The READTHEDOCS_DATA global variable will be removed in the future.
+-->
+<script type="text/javascript">
+READTHEDOCS_DATA = JSON.parse(document.getElementById('READTHEDOCS_DATA').innerHTML);
+</script>
+
+<script type="text/javascript" src="./Examples — bronkhorst-propar 1.0.1 documentation_files/readthedocs-analytics.js.Без названия" async="async"></script>
+
+<!-- end RTD <extrahead> -->
+<script src="./Examples — bronkhorst-propar 1.0.1 documentation_files/js" type="text/javascript" async=""></script><script src="./Examples — bronkhorst-propar 1.0.1 documentation_files/ethicalads.min.js.Без названия" type="text/javascript" async="" id="ethicaladsjs"></script><style>[data-ea-publisher].loaded,[data-ea-type].loaded{font-size:14px;font-family:-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;font-weight:normal;font-style:normal;leter-spacing:0px;vertical-align:baseline;line-height:1.3em}[data-ea-publisher].loaded a,[data-ea-type].loaded a{text-decoration:none}[data-ea-publisher].loaded .ea-pixel,[data-ea-type].loaded .ea-pixel{display:none}[data-ea-publisher].loaded .ea-content,[data-ea-type].loaded .ea-content{margin:1em 1em 0.5em 1em;padding:1em;background:rgba(0,0,0,0.03);color:#505050}[data-ea-publisher].loaded .ea-content a:link,[data-ea-type].loaded .ea-content a:link{color:#505050}[data-ea-publisher].loaded .ea-content a:visited,[data-ea-type].loaded .ea-content a:visited{color:#505050}[data-ea-publisher].loaded .ea-content a:hover,[data-ea-type].loaded .ea-content a:hover{color:#373737}[data-ea-publisher].loaded .ea-content a:active,[data-ea-type].loaded .ea-content a:active{color:#373737}[data-ea-publisher].loaded .ea-content a strong,[data-ea-publisher].loaded .ea-content a b,[data-ea-type].loaded .ea-content a strong,[data-ea-type].loaded .ea-content a b{color:#088cdb}[data-ea-publisher].loaded .ea-callout a:link,[data-ea-type].loaded .ea-callout a:link{color:#6a6a6a}[data-ea-publisher].loaded .ea-callout a:visited,[data-ea-type].loaded .ea-callout a:visited{color:#6a6a6a}[data-ea-publisher].loaded .ea-callout a:hover,[data-ea-type].loaded .ea-callout a:hover{color:#505050}[data-ea-publisher].loaded .ea-callout a:active,[data-ea-type].loaded .ea-callout a:active{color:#505050}[data-ea-publisher].loaded .ea-callout a strong,[data-ea-publisher].loaded .ea-callout a b,[data-ea-type].loaded .ea-callout a strong,[data-ea-type].loaded .ea-callout a b{color:#088cdb}[data-ea-publisher].loaded .ea-callout a,[data-ea-type].loaded .ea-callout a{font-size:0.8em}[data-ea-publisher].loaded.dark .ea-content,[data-ea-type].loaded.dark .ea-content{background:rgba(255,255,255,0.05);color:#dcdcdc}[data-ea-publisher].loaded.dark .ea-content a:link,[data-ea-type].loaded.dark .ea-content a:link{color:#dcdcdc}[data-ea-publisher].loaded.dark .ea-content a:visited,[data-ea-type].loaded.dark .ea-content a:visited{color:#dcdcdc}[data-ea-publisher].loaded.dark .ea-content a:hover,[data-ea-type].loaded.dark .ea-content a:hover{color:#f6f6f6}[data-ea-publisher].loaded.dark .ea-content a:active,[data-ea-type].loaded.dark .ea-content a:active{color:#f6f6f6}[data-ea-publisher].loaded.dark .ea-content a strong,[data-ea-publisher].loaded.dark .ea-content a b,[data-ea-type].loaded.dark .ea-content a strong,[data-ea-type].loaded.dark .ea-content a b{color:#50baf9}[data-ea-publisher].loaded.dark .ea-callout a:link,[data-ea-type].loaded.dark .ea-callout a:link{color:#c3c3c3}[data-ea-publisher].loaded.dark .ea-callout a:visited,[data-ea-type].loaded.dark .ea-callout a:visited{color:#c3c3c3}[data-ea-publisher].loaded.dark .ea-callout a:hover,[data-ea-type].loaded.dark .ea-callout a:hover{color:#dcdcdc}[data-ea-publisher].loaded.dark .ea-callout a:active,[data-ea-type].loaded.dark .ea-callout a:active{color:#dcdcdc}[data-ea-publisher].loaded.dark .ea-callout a strong,[data-ea-publisher].loaded.dark .ea-callout a b,[data-ea-type].loaded.dark .ea-callout a strong,[data-ea-type].loaded.dark .ea-callout a b{color:#50baf9}@media (prefers-color-scheme: dark){[data-ea-publisher].loaded.adaptive .ea-content,[data-ea-type].loaded.adaptive .ea-content{background:rgba(255,255,255,0.05);color:#dcdcdc}[data-ea-publisher].loaded.adaptive .ea-content a:link,[data-ea-type].loaded.adaptive .ea-content a:link{color:#dcdcdc}[data-ea-publisher].loaded.adaptive .ea-content a:visited,[data-ea-type].loaded.adaptive .ea-content a:visited{color:#dcdcdc}[data-ea-publisher].loaded.adaptive .ea-content a:hover,[data-ea-type].loaded.adaptive .ea-content a:hover{color:#f6f6f6}[data-ea-publisher].loaded.adaptive .ea-content a:active,[data-ea-type].loaded.adaptive .ea-content a:active{color:#f6f6f6}[data-ea-publisher].loaded.adaptive .ea-content a strong,[data-ea-publisher].loaded.adaptive .ea-content a b,[data-ea-type].loaded.adaptive .ea-content a strong,[data-ea-type].loaded.adaptive .ea-content a b{color:#50baf9}[data-ea-publisher].loaded.adaptive .ea-callout a:link,[data-ea-type].loaded.adaptive .ea-callout a:link{color:#c3c3c3}[data-ea-publisher].loaded.adaptive .ea-callout a:visited,[data-ea-type].loaded.adaptive .ea-callout a:visited{color:#c3c3c3}[data-ea-publisher].loaded.adaptive .ea-callout a:hover,[data-ea-type].loaded.adaptive .ea-callout a:hover{color:#dcdcdc}[data-ea-publisher].loaded.adaptive .ea-callout a:active,[data-ea-type].loaded.adaptive .ea-callout a:active{color:#dcdcdc}[data-ea-publisher].loaded.adaptive .ea-callout a strong,[data-ea-publisher].loaded.adaptive .ea-callout a b,[data-ea-type].loaded.adaptive .ea-callout a strong,[data-ea-type].loaded.adaptive .ea-callout a b{color:#50baf9}}[data-ea-publisher].loaded .ea-content,[data-ea-type].loaded .ea-content{border:0px;border-radius:3px;box-shadow:0px 2px 3px rgba(0,0,0,0.15)}[data-ea-publisher].loaded.raised .ea-content,[data-ea-type].loaded.raised .ea-content{border:0px;border-radius:3px;box-shadow:0px 2px 3px rgba(0,0,0,0.15)}[data-ea-publisher].loaded.bordered .ea-content,[data-ea-type].loaded.bordered .ea-content{border:1px solid rgba(0,0,0,0.04);border-radius:3px;box-shadow:none}[data-ea-publisher].loaded.bordered.dark .ea-content,[data-ea-type].loaded.bordered.dark .ea-content{border:1px solid rgba(255,255,255,0.07)}@media (prefers-color-scheme: dark){[data-ea-publisher].loaded.bordered.adaptive .ea-content,[data-ea-type].loaded.bordered.adaptive .ea-content{border:1px solid rgba(255,255,255,0.07)}}[data-ea-publisher].loaded.flat .ea-content,[data-ea-type].loaded.flat .ea-content{border:0px;border-radius:3px;box-shadow:none}[data-ea-type="image"].loaded,[data-ea-publisher]:not([data-ea-type]).loaded,.ea-type-image{display:inline-block}[data-ea-type="image"].loaded .ea-content,[data-ea-publisher]:not([data-ea-type]).loaded .ea-content,.ea-type-image .ea-content{max-width:180px;overflow:auto;text-align:center}[data-ea-type="image"].loaded .ea-content>a>img,[data-ea-publisher]:not([data-ea-type]).loaded .ea-content>a>img,.ea-type-image .ea-content>a>img{width:120px;height:90px;display:inline-block}[data-ea-type="image"].loaded .ea-content>.ea-text,[data-ea-publisher]:not([data-ea-type]).loaded .ea-content>.ea-text,.ea-type-image .ea-content>.ea-text{margin-top:1em;font-size:1em;text-align:center}[data-ea-type="image"].loaded .ea-callout,[data-ea-publisher]:not([data-ea-type]).loaded .ea-callout,.ea-type-image .ea-callout{max-width:180px;margin:0em 1em 1em 1em;padding-left:1em;padding-right:1em;font-style:italic;text-align:right}[data-ea-type="image"].loaded.horizontal .ea-content,[data-ea-publisher]:not([data-ea-type]).loaded.horizontal .ea-content,.ea-type-image.horizontal .ea-content{max-width:320px}[data-ea-type="image"].loaded.horizontal .ea-content>a>img,[data-ea-publisher]:not([data-ea-type]).loaded.horizontal .ea-content>a>img,.ea-type-image.horizontal .ea-content>a>img{float:left;margin-right:1em}[data-ea-type="image"].loaded.horizontal .ea-content .ea-text,[data-ea-publisher]:not([data-ea-type]).loaded.horizontal .ea-content .ea-text,.ea-type-image.horizontal .ea-content .ea-text{margin-top:0em;text-align:left;overflow:auto}[data-ea-type="image"].loaded.horizontal .ea-callout,[data-ea-publisher]:not([data-ea-type]).loaded.horizontal .ea-callout,.ea-type-image.horizontal .ea-callout{max-width:320px;text-align:right}[data-ea-type="text"].loaded,.ea-type-text{font-size:14px}[data-ea-type="text"].loaded .ea-content,.ea-type-text .ea-content{text-align:left}[data-ea-type="text"].loaded .ea-callout,.ea-type-text .ea-callout{margin:0.5em 1em 1em 1em;padding-left:1em;padding-right:1em;text-align:right;font-style:italic}[data-ea-style="stickybox"].loaded{position:fixed;bottom:20px;right:20px;z-index:10}[data-ea-style="stickybox"].loaded .ea-type-image .ea-stickybox-hide{cursor:pointer;position:absolute;top:0.75em;right:0.75em;background-color:#fefefe;border:1px solid #088cdb;border-radius:50%;color:#088cdb;font-size:1em;text-align:center;height:1.5em;width:1.5em;line-height:1.5em}@media (max-width: 1300px){[data-ea-style="stickybox"].loaded{position:static;bottom:0;right:0;margin:auto;text-align:center}[data-ea-style="stickybox"].loaded .ea-stickybox-hide{display:none}}@media (min-width: 1301px){[data-ea-style="stickybox"].loaded .ea-type-image .ea-content{background:#dcdcdc}[data-ea-style="stickybox"].loaded.dark .ea-type-image .ea-content{background:#505050}}@media (min-width: 1301px) and (prefers-color-scheme: dark){[data-ea-style="stickybox"].loaded.adaptive .ea-type-image .ea-content{background:#505050}}[data-ea-style="fixedfooter"].loaded{position:fixed;bottom:0;left:0;z-index:10;width:100%;max-width:100%}[data-ea-style="fixedfooter"].loaded .ea-type-text{width:100%;max-width:100%;display:flex;z-index:10;background:#dcdcdc}[data-ea-style="fixedfooter"].loaded .ea-type-text .ea-content{border:0px;border-radius:3px;box-shadow:none}[data-ea-style="fixedfooter"].loaded .ea-type-text .ea-content{background-color:inherit;max-width:100%;margin:0;padding:1em;flex:auto}[data-ea-style="fixedfooter"].loaded .ea-type-text .ea-callout{max-width:100%;margin:0;padding:1em;flex:initial}@media (max-width: 576px){[data-ea-style="fixedfooter"].loaded .ea-type-text .ea-callout{display:none}}[data-ea-style="fixedfooter"].loaded .ea-type-text .ea-fixedfooter-hide{cursor:pointer;color:#505050;padding:1em;flex:initial;margin:auto 0}[data-ea-style="fixedfooter"].loaded .ea-type-text .ea-fixedfooter-hide span{padding:0.25em;font-size:0.8em;font-weight:bold;border:0.15em solid #505050;border-radius:0.5em;white-space:nowrap}[data-ea-style="fixedfooter"].loaded.dark .ea-type-text{background:#505050}[data-ea-style="fixedfooter"].loaded.dark .ea-type-text .ea-fixedfooter-hide span{color:#dcdcdc;border-color:#dcdcdc}@media (prefers-color-scheme: dark){[data-ea-style="fixedfooter"].loaded.adaptive .ea-type-text{background:#505050}[data-ea-style="fixedfooter"].loaded.adaptive .ea-type-text .ea-fixedfooter-hide span{color:#dcdcdc;border-color:#dcdcdc}}
+</style><script src="./Examples — bronkhorst-propar 1.0.1 documentation_files/saved_resource" type="text/javascript" async=""></script></head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="https://bronkhorst-propar.readthedocs.io/en/latest/index.html" class="icon icon-home"> bronkhorst-propar
+          
+
+          
+          </a>
+
+          
+            
+            
+            
+              <div class="version">
+                latest
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="https://bronkhorst-propar.readthedocs.io/en/latest/search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs">
+    <input type="hidden" name="check_keywords" value="yes">
+    <input type="hidden" name="area" value="default">
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="https://bronkhorst-propar.readthedocs.io/en/latest/introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal current" href="https://bronkhorst-propar.readthedocs.io/en/latest/examples.html#"><span class="toctree-expand"></span>Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="https://bronkhorst-propar.readthedocs.io/en/latest/examples.html#connecting-to-a-single-instrument">Connecting to a single instrument</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://bronkhorst-propar.readthedocs.io/en/latest/examples.html#connecting-to-an-instrument-with-multiple-channels">Connecting to an instrument with multiple channels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://bronkhorst-propar.readthedocs.io/en/latest/examples.html#connecting-to-multiple-instruments">Connecting to multiple instruments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://bronkhorst-propar.readthedocs.io/en/latest/examples.html#custom-baudrate">Custom baudrate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://bronkhorst-propar.readthedocs.io/en/latest/examples.html#scanning-for-instruments">Scanning for instruments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://bronkhorst-propar.readthedocs.io/en/latest/examples.html#using-a-master">Using a master</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://bronkhorst-propar.readthedocs.io/en/latest/examples.html#chaining">Chaining</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://bronkhorst-propar.readthedocs.io/en/latest/examples.html#database">Database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://bronkhorst-propar.readthedocs.io/en/latest/examples.html#custom-serial-class">Custom serial class</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="https://bronkhorst-propar.readthedocs.io/en/latest/propar.html">Propar API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://bronkhorst-propar.readthedocs.io/en/latest/changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://bronkhorst-propar.readthedocs.io/en/latest/contact.html">Contact</a></li>
+</ul>
+
+            
+          
+        </div>
+      <div id="rtd-sidebar" data-ea-publisher="readthedocs" data-ea-type="readthedocs-sidebar" data-ea-manual="true" class="ethical-rtd ethical-dark-theme" data-ea-keywords="only words|readthedocs-project-621703|readthedocs-project-bronkhorst-propar" data-ea-campaign-types="community|house|paid"></div></div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="https://bronkhorst-propar.readthedocs.io/en/latest/index.html">bronkhorst-propar</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="https://bronkhorst-propar.readthedocs.io/en/latest/index.html">Docs</a> »</li>
+        
+      <li>Examples</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/bronkhorst-developer/bronkhorst-propar/blob/master/docs/examples.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="examples">
+<h1>Examples<a class="headerlink" href="https://bronkhorst-propar.readthedocs.io/en/latest/examples.html#examples" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="connecting-to-a-single-instrument">
+<h2>Connecting to a single instrument<a class="headerlink" href="https://bronkhorst-propar.readthedocs.io/en/latest/examples.html#connecting-to-a-single-instrument" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the propar module</span>
+<span class="kn">import</span> <span class="nn">propar</span>
+
+<span class="c1"># Connect to the local instrument, when no settings provided</span>
+<span class="c1"># defaults to locally connected instrument (address=0x80, baudrate=38400)</span>
+<span class="n">el_flow</span> <span class="o">=</span> <span class="n">propar</span><span class="o">.</span><span class="n">instrument</span><span class="p">(</span><span class="s1">'COM1'</span><span class="p">)</span>
+
+<span class="c1"># The setpoint and measure parameters are available</span>
+<span class="c1"># as properties, for ease of use.</span>
+<span class="n">el_flow</span><span class="o">.</span><span class="n">setpoint</span> <span class="o">=</span> <span class="mi">16000</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">el_flow</span><span class="o">.</span><span class="n">measure</span><span class="p">)</span>
+<span class="n">el_flow</span><span class="o">.</span><span class="n">setpoint</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># All parameters can be read using the process and parameter numbers,</span>
+<span class="c1"># as well as the parameters data type.</span>
+<span class="n">el_flow</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">propar</span><span class="o">.</span><span class="n">PP_TYPE_INT16</span><span class="p">)</span>
+
+<span class="c1"># Most parameters can also be read by their FlowDDE number,</span>
+<span class="c1"># for example the user tag parameter.</span>
+<span class="n">el_flow</span><span class="o">.</span><span class="n">writeParameter</span><span class="p">(</span><span class="mi">115</span><span class="p">,</span> <span class="s2">"Hello World!"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">el_flow</span><span class="o">.</span><span class="n">readParameter</span><span class="p">(</span><span class="mi">115</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="connecting-to-an-instrument-with-multiple-channels">
+<h2>Connecting to an instrument with multiple channels<a class="headerlink" href="https://bronkhorst-propar.readthedocs.io/en/latest/examples.html#connecting-to-an-instrument-with-multiple-channels" title="Permalink to this headline">¶</a></h2>
+<p>Some instruments are a single node (one address) but contain multiple channels (for multiple sensors).
+To connect to a specific channel, specify the channel when creating an instrument instance.
+If no channel is specified the first channel will be used.</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the propar module</span>
+<span class="kn">import</span> <span class="nn">propar</span>
+
+<span class="c1"># Connect to an instrument by specifying the channel number to connect to</span>
+<span class="n">flow</span> <span class="o">=</span> <span class="n">propar</span><span class="o">.</span><span class="n">instrument</span><span class="p">(</span><span class="s1">'COM1'</span><span class="p">,</span> <span class="n">channel</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">pressure</span> <span class="o">=</span> <span class="n">propar</span><span class="o">.</span><span class="n">instrument</span><span class="p">(</span><span class="s1">'COM1'</span><span class="p">,</span> <span class="n">channel</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Alternatively, pass channel to parameter functions</span>
+<span class="n">instrument</span> <span class="o">=</span> <span class="n">propar</span><span class="o">.</span><span class="n">instrument</span><span class="p">(</span><span class="s1">'COM1'</span><span class="p">)</span>
+<span class="n">p_upstream</span> <span class="o">=</span> <span class="n">instrument</span><span class="o">.</span><span class="n">readParameter</span><span class="p">(</span><span class="mi">205</span><span class="p">,</span> <span class="n">channel</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="connecting-to-multiple-instruments">
+<h2>Connecting to multiple instruments<a class="headerlink" href="https://bronkhorst-propar.readthedocs.io/en/latest/examples.html#connecting-to-multiple-instruments" title="Permalink to this headline">¶</a></h2>
+<p>When instruments are connected to a FLOW-BUS network, the localhost function an instrument can be
+used to connect to other instruments on the network (by specifying the node address).</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the propar module</span>
+<span class="kn">import</span> <span class="nn">propar</span>
+
+<span class="c1"># Connect to an instrument by specifying the instrument node address to connect to</span>
+<span class="n">el_flow</span> <span class="o">=</span> <span class="n">propar</span><span class="o">.</span><span class="n">instrument</span><span class="p">(</span><span class="s1">'COM1'</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">cori_flow</span> <span class="o">=</span> <span class="n">propar</span><span class="o">.</span><span class="n">instrument</span><span class="p">(</span><span class="s1">'COM1'</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">es_flow</span>   <span class="o">=</span> <span class="n">propar</span><span class="o">.</span><span class="n">instrument</span><span class="p">(</span><span class="s1">'COM1'</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="custom-baudrate">
+<h2>Custom baudrate<a class="headerlink" href="https://bronkhorst-propar.readthedocs.io/en/latest/examples.html#custom-baudrate" title="Permalink to this headline">¶</a></h2>
+<p>It is also possible to connect to an instrument with a different
+baudrate than the default of 38400 baud. Note that it is only possible
+to connect using the baudrate that is configured in the instrument.</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the propar module</span>
+<span class="kn">import</span> <span class="nn">propar</span>
+
+<span class="c1"># Connect to the local instrument, with a different baudrate than the default (38400)</span>
+<span class="n">el_flow</span> <span class="o">=</span> <span class="n">propar</span><span class="o">.</span><span class="n">instrument</span><span class="p">(</span><span class="s1">'COM1'</span><span class="p">,</span> <span class="n">baudrate</span><span class="o">=</span><span class="mi">115200</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="scanning-for-instruments">
+<h2>Scanning for instruments<a class="headerlink" href="https://bronkhorst-propar.readthedocs.io/en/latest/examples.html#scanning-for-instruments" title="Permalink to this headline">¶</a></h2>
+<p>To check all connected instruments on the network, the propar modules
+master can be used. When creating an instrument on a specific com port,
+a propar master is automatically created for that comport. Using the
+get_nodes function of the master, a list of all nodes on the network is
+collected and returned. This list can be used to check if all expected
+instruments are connected, or to get an overview of your network.</p>
+<p>The nodes list will also include the number of channels that are present
+on that device. Use this in combination with the channel functionality
+to create instances of each device and for the seperate device channels.</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the propar module</span>
+<span class="kn">import</span> <span class="nn">propar</span>
+
+<span class="c1"># Connect to the local instrument.</span>
+<span class="n">el_flow</span> <span class="o">=</span> <span class="n">propar</span><span class="o">.</span><span class="n">instrument</span><span class="p">(</span><span class="s1">'COM1'</span><span class="p">)</span>
+
+<span class="c1"># Use the get_nodes function of the master of the instrument to get a list of instruments on the network</span>
+<span class="n">nodes</span> <span class="o">=</span> <span class="n">el_flow</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">get_nodes</span><span class="p">()</span>
+
+<span class="c1"># Display the list of nodes</span>
+<span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-a-master">
+<h2>Using a master<a class="headerlink" href="https://bronkhorst-propar.readthedocs.io/en/latest/examples.html#using-a-master" title="Permalink to this headline">¶</a></h2>
+<p>It is also possible to only create a master. This removes some
+abstraction offered by the instrument class, such as the setpoint and
+measure properties, the readParameter and writeParameter functions, and
+having to supply the node number on each read/write parameter call.</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the propar module</span>
+<span class="kn">import</span> <span class="nn">propar</span>
+
+<span class="c1"># Create the master</span>
+<span class="n">master</span> <span class="o">=</span> <span class="n">propar</span><span class="o">.</span><span class="n">master</span><span class="p">(</span><span class="s1">'COM1'</span><span class="p">,</span> <span class="mi">38400</span><span class="p">)</span>
+
+<span class="c1"># Get nodes on the network</span>
+<span class="n">nodes</span> <span class="o">=</span> <span class="n">master</span><span class="o">.</span><span class="n">get_nodes</span><span class="p">()</span>
+
+<span class="c1"># Read the usertag of all nodes</span>
+<span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">:</span>
+  <span class="n">user_tag</span> <span class="o">=</span> <span class="n">master</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">node</span><span class="p">[</span><span class="s1">'address'</span><span class="p">],</span> <span class="mi">113</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="n">propar</span><span class="o">.</span><span class="n">PP_TYPE_STRING</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">user_tag</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="chaining">
+<h2>Chaining<a class="headerlink" href="https://bronkhorst-propar.readthedocs.io/en/latest/examples.html#chaining" title="Permalink to this headline">¶</a></h2>
+<p>Finally the propar module offers the possibility of using the chaining
+mechanism of the propar protocol to read or write multiple parameters
+using a single propar message. This is advanced functionality and has
+some downsides, especially when it comes to error handling. As the
+read_parameters and write_parameters functions do not return True or
+False to indicate success, but instead rely on the underlying propar
+status codes to indicate the result of the action.</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the propar module</span>
+<span class="kn">import</span> <span class="nn">propar</span>
+
+<span class="c1"># Connect to the local instrument.</span>
+<span class="n">el_flow</span> <span class="o">=</span> <span class="n">propar</span><span class="o">.</span><span class="n">instrument</span><span class="p">(</span><span class="s1">'COM1'</span><span class="p">)</span>
+
+<span class="c1"># Prepare a list of parameters for a chained read containing:</span>
+<span class="c1"># fmeasure, fsetpoint, temperature, valve output</span>
+<span class="n">params</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">'proc_nr'</span><span class="p">:</span>  <span class="mi">33</span><span class="p">,</span> <span class="s1">'parm_nr'</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">'parm_type'</span><span class="p">:</span> <span class="n">propar</span><span class="o">.</span><span class="n">PP_TYPE_FLOAT</span><span class="p">},</span>
+          <span class="p">{</span><span class="s1">'proc_nr'</span><span class="p">:</span>  <span class="mi">33</span><span class="p">,</span> <span class="s1">'parm_nr'</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">'parm_type'</span><span class="p">:</span> <span class="n">propar</span><span class="o">.</span><span class="n">PP_TYPE_FLOAT</span><span class="p">},</span>
+          <span class="p">{</span><span class="s1">'proc_nr'</span><span class="p">:</span>  <span class="mi">33</span><span class="p">,</span> <span class="s1">'parm_nr'</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s1">'parm_type'</span><span class="p">:</span> <span class="n">propar</span><span class="o">.</span><span class="n">PP_TYPE_FLOAT</span><span class="p">},</span>
+          <span class="p">{</span><span class="s1">'proc_nr'</span><span class="p">:</span> <span class="mi">114</span><span class="p">,</span> <span class="s1">'parm_nr'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">'parm_type'</span><span class="p">:</span> <span class="n">propar</span><span class="o">.</span><span class="n">PP_TYPE_INT32</span><span class="p">}]</span>
+
+<span class="c1"># Note that this uses the read_parameters function.</span>
+<span class="n">values</span> <span class="o">=</span> <span class="n">el_flow</span><span class="o">.</span><span class="n">read_parameters</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+
+<span class="c1"># Display the values returned by the read_parameters function. A single 'value' includes</span>
+<span class="c1"># the original fields of the parameters supplied to the request, with the data stored in</span>
+<span class="c1"># the value['data'] field.</span>
+<span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+<span class="c1"># For writes the parameter must have the 'data' field set with the value to write when</span>
+<span class="c1"># passing it to the write_parameters function.</span>
+<span class="n">params</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">'proc_nr'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">'parm_nr'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">'parm_type'</span><span class="p">:</span> <span class="n">propar</span><span class="o">.</span><span class="n">PP_TYPE_INT16</span><span class="p">,</span> <span class="s1">'data'</span><span class="p">:</span> <span class="mi">32000</span><span class="p">}]</span>
+
+<span class="c1"># Write parameters returns a propar status code.</span>
+<span class="n">status</span> <span class="o">=</span> <span class="n">el_flow</span><span class="o">.</span><span class="n">write_parameters</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+
+<span class="c1"># Also, note that when using the master directly the address of the node must be set in the</span>
+<span class="c1"># parameter object that is passed to the read_parameters or write_parameters function</span>
+<span class="n">params</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">'node'</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">'proc_nr'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">'parm_nr'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">'parm_type'</span><span class="p">:</span> <span class="n">propar</span><span class="o">.</span><span class="n">PP_TYPE_INT16</span><span class="p">}]</span>
+
+<span class="c1"># Read from the master directly</span>
+<span class="n">values</span> <span class="o">=</span> <span class="n">el_flow</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">read_parameters</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="database">
+<h2>Database<a class="headerlink" href="https://bronkhorst-propar.readthedocs.io/en/latest/examples.html#database" title="Permalink to this headline">¶</a></h2>
+<p>To easily generate a list of parameters for use with chaining, and the
+read_parameters and write_parameters functions, the propar database
+can be used. This component is automatically available on all instrument
+instances or can be instantiated separately.</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the propar module</span>
+<span class="kn">import</span> <span class="nn">propar</span>
+
+<span class="c1"># Create a database instance</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">propar</span><span class="o">.</span><span class="n">database</span><span class="p">()</span>
+
+<span class="c1"># or access the instruments database instance</span>
+<span class="n">el_flow</span> <span class="o">=</span> <span class="n">propar</span><span class="o">.</span><span class="n">instrument</span><span class="p">(</span><span class="s1">'COM1'</span><span class="p">)</span>
+<span class="n">db</span>      <span class="o">=</span> <span class="n">el_flow</span><span class="o">.</span><span class="n">db</span>
+
+<span class="c1"># Get parameter objects for chained read (read_parameters) from list of FlowDDE numbers</span>
+<span class="n">parameters</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">get_parameters</span><span class="p">([</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">142</span><span class="p">])</span>
+
+<span class="c1"># Get a single parameter object</span>
+<span class="n">setpoint</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">get_parameter</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+
+<span class="c1"># It is also possible to search the database, using the string name of the parameter</span>
+<span class="n">valve_parameters</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">get_parameters_like</span><span class="p">(</span><span class="s1">'valve'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="custom-serial-class">
+<h2>Custom serial class<a class="headerlink" href="https://bronkhorst-propar.readthedocs.io/en/latest/examples.html#custom-serial-class" title="Permalink to this headline">¶</a></h2>
+<p>To use a custom serial data provider (instead of pySerial), the
+serial_class can be passed to the instrument and master classes.</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the propar module</span>
+<span class="kn">import</span> <span class="nn">propar</span>
+
+<span class="c1"># A dummy serial port class with the required functions and attributes.</span>
+<span class="k">class</span> <span class="nc">dummy_serial</span><span class="p">():</span>
+
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">baudrate</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="c1"># Initialize the port, port and baudrate can be controlled</span>
+    <span class="c1"># in instrument and master initialization.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">port</span><span class="p">,</span> <span class="n">baudrate</span><span class="p">)</span>
+
+  <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="c1"># Close the port</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'close'</span><span class="p">)</span>
+
+  <span class="k">def</span> <span class="nf">open</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="c1"># Open the port</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'open'</span><span class="p">)</span>
+
+  <span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="c1"># Read data from port, return bytes object</span>
+    <span class="k">return</span> <span class="sa">b</span><span class="s1">'dummy'</span>
+
+  <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="c1"># Write data to port, bytes object as input</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+  <span class="nd">@property</span>
+  <span class="k">def</span> <span class="nf">in_waiting</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="c1"># Return number of bytes available for reading</span>
+    <span class="k">return</span> <span class="mi">5</span>
+
+<span class="c1"># Instrument instance with dummy serial port.</span>
+<span class="n">dut</span> <span class="o">=</span> <span class="n">propar</span><span class="o">.</span><span class="n">instrument</span><span class="p">(</span><span class="s1">'dummy_port'</span><span class="p">,</span> <span class="n">serial_class</span><span class="o">=</span><span class="n">dummy_serial</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="https://bronkhorst-propar.readthedocs.io/en/latest/propar.html" class="btn btn-neutral float-right" title="Propar API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="https://bronkhorst-propar.readthedocs.io/en/latest/introduction.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>
+        © Copyright 2020-2022, Bronkhorst
+      
+        <span class="commit">
+          Revision <code>29ccb762</code>.
+        </span>
+      
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Read the Docs</span>
+      v: latest
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions"><!-- Inserted RTD Footer -->
+
+<div class="injected">
+
+  
+
+      
+      
+      
+      <dl>
+        <dt>Версии</dt>
+        
+        <dd class="rtd-current-item">
+          <a href="https://bronkhorst-propar.readthedocs.io/en/latest/examples.html">latest</a>
+        </dd>
+        
+      </dl>
+      
+      
+
+      
+      
+      
+
+      
+      <dl>
+        
+        <!-- These are kept as relative links for internal installs that are http -->
+        <dt>На Read the Docs</dt>
+        <dd>
+          <a href="https://readthedocs.org/projects/bronkhorst-propar/">Главная страница проекта</a>
+        </dd>
+        <dd>
+          <a href="https://readthedocs.org/projects/bronkhorst-propar/builds/">Сборки</a>
+        </dd>
+        <dd>
+          <a href="https://readthedocs.org/projects/bronkhorst-propar/downloads/">Скачать</a>
+        </dd>
+      </dl>
+      
+
+      
+
+      
+      <dl>
+        <dt>На GitHub</dt>
+        <dd>
+          <a href="https://github.com/bronkhorst-developer/bronkhorst-propar/blob/master/docs/examples.rst">Просмотреть</a>
+        </dd>
+        
+        <dd>
+          <a href="https://github.com/bronkhorst-developer/bronkhorst-propar/edit/master/docs/examples.rst">Редактировать</a>
+        </dd>
+        
+      </dl>
+      
+      
+
+      
+      <dl>
+        <dt>Поиск</dt>
+        <dd>
+          <div style="padding: 6px;">
+            
+            <form id="flyout-search-form" class="wy-form" target="_blank" action="https://readthedocs.org/projects/bronkhorst-propar/search/" method="get">
+              <input type="text" name="q" aria-label="Поиск в документации" placeholder="Поиск в документации">
+              </form>
+          </div>
+        </dd>
+      </dl>
+      
+
+      <hr>
+
+      
+        <small>
+          <span>Размещено благодаря <a href="https://readthedocs.org/">Read the Docs</a></span>
+          <span> · </span>
+          <a href="https://docs.readthedocs.io/page/privacy-policy.html">Политика приватности</a>
+        </small>
+      
+
+      
+
+</div>
+</div>
+  </div>
+
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+   
+
+
+</body></html>
