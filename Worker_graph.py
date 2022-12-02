@@ -1,11 +1,12 @@
-from pyqtgraph import PlotWidget
-from PyQt5.QtCore import QObject, pyqtSignal, QWaitCondition, QMutex, pyqtBoundSignal, pyqtSlot
 
-import numpy as np
+from PyQt5.QtCore import QObject, pyqtSignal
+
 import time
 from datetime import datetime
 import gc  # Очистка пямяти
 import os
+
+from memory_profiler import *
 
 bool_thread_garph = False  # Запущен поток для графика?
 
@@ -77,6 +78,7 @@ class Flow_worker_class_garph(QObject):
         t = 1
 
     def run_worker(self):
+        self.open_file_befor_consumption()
         while 1:
             self.paint_grah()
             self.progress.emit()
@@ -84,6 +86,19 @@ class Flow_worker_class_garph(QObject):
             if self.exit_worker:
                 self.finished.emit()
                 return
+
+    def open_file_befor_consumption(self):
+        filename = os.getcwd() + "\\Data"
+        files = os.listdir(filename)
+        files.sort()
+        f_read = open(filename + "\\" + files[-1], "r")
+        last_line = f_read.readlines()[-1]
+        l = last_line.split()
+
+        self.gas_consumption_m1 = round(float(l[3]), 3)
+        self.gas_consumption_m2 = round(float(l[7]), 3)
+
+        f_read.close()
 
     def paint_grah(self):
         bool_write = False
@@ -176,6 +191,7 @@ class Flow_worker_class_garph(QObject):
 
             self.time_stop_pro = datetime.now()
 
+    
     def setAnswer_1(self, value, name, value_p, tempr):
         self.y_buff_1 = value
         self.name_1 = name
@@ -184,6 +200,7 @@ class Flow_worker_class_garph(QObject):
         if len(self.value_program_m1) > 6:  # Ограничение по времени
             del self.value_program_m1[0]
 
+    
     def setAnswer_2(self, value, name, value_p, tempr):
         self.y_buff_2 = value
         self.name_2 = name
@@ -192,36 +209,47 @@ class Flow_worker_class_garph(QObject):
         if len(self.value_program_m2) > 6:  # Ограничение по времени
             del self.value_program_m2[0]
 
+    def co2_consumption_zero(self): # Сбросить на 0 общий расход CO2
+        if self.name_2 == "CO2       ":
+            self.gas_consumption_m2 = 0
+        elif self.name_1 == "CO2       ":
+            self.gas_consumption_m1 = 0
+
     def Write_data_first(self):
         dt = datetime.now()
-        dt_test = dt.strftime("%d_%m_%Y")
+        dt_test = dt.strftime("%Y_%m_%d")
         filename = os.getcwd() + "\\Data"
+        name_file = "\\Data_time_" + dt_test
+        txt = ".txt"
         if os.path.exists(filename):
-            my_file = open(filename + "\\A_time_" + dt_test + ".txt", "a")
+            my_file = open(filename + name_file + txt, "a")
         else:
             os.mkdir("Data")
-            my_file = open(filename + "\\A_time_" + dt_test + ".txt", "a")
+            my_file = open(filename + name_file + txt, "a")
 
         my_file.write(f"Time\t" 
-                f"value_on_device_(l/h)_{self.name_1}\tvalue_in_program_(l/h)_{self.name_1}\t" +
-                f"Gas_consumption_(l/h)_{self.name_1}\tTemperature_(C)_{self.name_1}\t" +
-                f"value_on_device_(l/h)_{self.name_2}\tvalue_in_program_(l/h)_{self.name_2}\t" +
-                f"Gas_consumption_(l/h)_{self.name_2}\tTemperature_(C)_{self.name_2}_C\n")
+                f"value_on_device_(l/h)_{self.name_1.strip(' ')}\tvalue_in_program_(l/h)_{self.name_1.strip(' ')}\t" +
+                f"Gas_consumption_(l/h)_{self.name_1.strip(' ')}\tTemperature_(C)_{self.name_1.strip(' ')}\t" +
+                f"value_on_device_(l/h)_{self.name_2.strip(' ')}\tvalue_in_program_(l/h)_{self.name_2.strip(' ')}\t" +
+                f"Gas_consumption_(l/h)_{self.name_2.strip(' ')}\tTemperature_(C)_{self.name_2.strip(' ')}_C\n")
         my_file.close()
 
+    
     def Write_data(self):
         dt = datetime.now()
-        dt_test = dt.strftime("%d_%m_%Y")
+        dt_test = dt.strftime("%Y_%m_%d")
         filename = os.getcwd() + "\\Data"
+        name_file = "\\Data_time_" + dt_test
+        txt = ".txt"
         if os.path.exists(filename):
-            if os.path.exists(filename + "\\A_time_" + dt_test + ".txt"):
-                my_file = open(filename + "\\A_time_" + dt_test + ".txt", "a")
+            if os.path.exists(filename + name_file + txt):
+                my_file = open(filename + name_file + txt, "a")
             else:
                 self.Write_data_first()
-                my_file = open(filename + "\\A_time_" + dt_test + ".txt", "a")
+                my_file = open(filename + name_file + txt, "a")
         else:
             os.mkdir("Data")
-            my_file = open(filename + "\\A_time_" + dt_test + ".txt", "a")
+            my_file = open(filename + name_file + txt, "a")
 
         value_dev_f1 = sum(self.y_main_plot_m1[-5:]) / 5
         value_prog_f1 = sum(self.value_program_m1[-5:]) / 5
@@ -240,6 +268,7 @@ class Flow_worker_class_garph(QObject):
         # my_file.write("hello!")
         my_file.close()
 
+    
     def __init__(self):
         super(Flow_worker_class_garph, self).__init__()
         self.temperature_f1 = None

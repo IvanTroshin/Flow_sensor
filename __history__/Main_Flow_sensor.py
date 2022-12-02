@@ -65,7 +65,7 @@ class Worker(QObject):
             self.progress.emit()
             time.sleep(1)
 
-    @profile
+    
     def button_test_grah(self):
         self.ui_main_window = Ui_MainWindow()
 

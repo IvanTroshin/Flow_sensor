@@ -2,12 +2,15 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1207</width>
-    <height>891</height>
+    <width>1228</width>
+    <height>877</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -112,6 +115,9 @@
                <layout class="QHBoxLayout" name="horizontalLayout_10">
                 <item>
                  <widget class="QLineEdit" name="lineEdit_temperature_Mix">
+                  <property name="enabled">
+                   <bool>true</bool>
+                  </property>
                   <property name="sizePolicy">
                    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                     <horstretch>0</horstretch>
@@ -197,6 +203,16 @@
              <layout class="QHBoxLayout" name="horizontalLayout_14">
               <item>
                <layout class="QVBoxLayout" name="verticalLayout_2">
+                <item>
+                 <widget class="QLineEdit" name="lineEdit_name_max_1">
+                  <property name="frame">
+                   <bool>false</bool>
+                  </property>
+                  <property name="readOnly">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
                 <item>
                  <widget class="QLineEdit" name="lineEdit_gas_1">
                   <property name="frame">
@@ -450,6 +466,16 @@ QProgressBar::chunk
               <item>
                <layout class="QVBoxLayout" name="verticalLayout">
                 <item>
+                 <widget class="QLineEdit" name="lineEdit_name_max_2">
+                  <property name="frame">
+                   <bool>false</bool>
+                  </property>
+                  <property name="readOnly">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
                  <widget class="QLineEdit" name="lineEdit_gas_2">
                   <property name="frame">
                    <bool>false</bool>
@@ -681,6 +707,13 @@ QProgressBar::chunk
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
+         <widget class="QPushButton" name="pushButton_Test">
+          <property name="text">
+           <string>PushButton</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <spacer name="horizontalSpacer_2">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
@@ -699,7 +732,7 @@ QProgressBar::chunk
            <bool>false</bool>
           </property>
           <property name="text">
-           <string>ReRun</string>
+           <string>ReRun Flow</string>
           </property>
          </widget>
         </item>
@@ -721,7 +754,7 @@ QProgressBar::chunk
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1207</width>
+     <width>1228</width>
      <height>22</height>
     </rect>
    </property>
@@ -730,6 +763,7 @@ QProgressBar::chunk
      <string>Options </string>
     </property>
     <addaction name="actionFind_com_port"/>
+    <addaction name="actionNew_balloon_CO2"/>
    </widget>
    <addaction name="menuFile"/>
   </widget>
@@ -737,6 +771,11 @@ QProgressBar::chunk
   <action name="actionFind_com_port">
    <property name="text">
     <string>Find COM port</string>
+   </property>
+  </action>
+  <action name="actionNew_balloon_CO2">
+   <property name="text">
+    <string>New balloon CO2</string>
    </property>
   </action>
  </widget>

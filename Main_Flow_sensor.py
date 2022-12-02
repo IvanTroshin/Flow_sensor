@@ -11,8 +11,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QObject, QThread, pyqtSignal
 from PyQt5.QtCore import *
 
-pg.setConfigOption('background', 'w')
+import os
 
+pg.setConfigOption('background', 'w')
 
 class testapp(QObject):
 
@@ -44,6 +45,7 @@ class testapp(QObject):
     come_port_f1 = 0
     come_port_f2 = 0
 
+    
     def launch(self):
         # инициация и демонстрация интерфейса
         self.main_window = QtWidgets.QMainWindow()
@@ -76,6 +78,8 @@ class testapp(QObject):
         self.ui_main_window.pushButton_Start_2.pressed.connect(self.start_master_2)
         self.ui_main_window.pushButton_stop_2.pressed.connect(self.stop_master_2)
 
+        self.ui_main_window.pushButton_Test.pressed.connect(self.Test_files)
+
         # ---------------- Вспомогательные ------------------------
 
         self.find_com_port_foo()  # Поиск активных COM порт и записывает в ComboBox
@@ -91,6 +95,10 @@ class testapp(QObject):
         self.ui_main_window.graphicsView_FS_1.getAxis('left').setPen(pg.mkPen(color=(0, 100, 0), width=3))
         # self.ui_main_window.graphicsView_FS_1.setTitle('The first')        # Название графика
 
+    def Test_files(self):
+        QWE = "CO2       "
+        print(QWE.strip(' '))
+    
     def Change_from_SpinBox_value_1(self):
         buff = self.ui_main_window.doubleSpinBox_value_1.value()
         buff = round(32000 * (buff - self.F1_CAPACITY_000) / (self.F1_CAPACITY_100 - self.F1_CAPACITY_000))
@@ -99,6 +107,7 @@ class testapp(QObject):
             self.Change_1_all_things(buff)
             self.what_change_1 = True
 
+    
     def Change_from_SpinBox_value_2(self):
         buff = self.ui_main_window.doubleSpinBox_value_2.value()
         buff = round(32000 * (buff - self.F2_CAPACITY_000) / (self.F2_CAPACITY_100 - self.F2_CAPACITY_000))
@@ -107,6 +116,7 @@ class testapp(QObject):
             self.Change_2_all_things(buff)
             self.what_change_2 = True
 
+    
     def Change_from_SpinBox_persent_1(self):
         buff = self.ui_main_window.doubleSpinBox_persent_1.value()
         buff = round(buff * 320)
@@ -115,6 +125,7 @@ class testapp(QObject):
             self.Change_1_all_things(buff)
             self.what_change_1 = True
 
+    
     def Change_from_SpinBox_persent_2(self):
         buff = self.ui_main_window.doubleSpinBox_persent_2.value()
         buff = round(buff * 320)
@@ -123,6 +134,7 @@ class testapp(QObject):
             self.Change_2_all_things(buff)
             self.what_change_2 = True
 
+    
     def Change_Slider_1(self):
         buff = self.ui_main_window.verticalSlider_1.value()  # Изменение расхода
         self.flow_worker_f1.chenge_val_signal.emit(buff)
@@ -133,6 +145,7 @@ class testapp(QObject):
             self.Change_1_all_things(buff)
             self.what_change_1 = True
 
+    
     def Change_Slider_2(self):
         buff = self.ui_main_window.verticalSlider_2.value()
         self.flow_worker_f2.chenge_val_signal.emit(buff)
@@ -144,6 +157,7 @@ class testapp(QObject):
             print(buff)
             self.what_change_2 = True
 
+    
     def Change_doubleSpinBox_value_Mix(self):
         buff_mix = self.ui_main_window.doubleSpinBox_value_Mix.value()
         print(self.ui_main_window.doubleSpinBox_value_Mix.maximum())
@@ -177,6 +191,7 @@ class testapp(QObject):
             self.Change_2_all_things(buff_2)
             self.what_change_2 = True
 
+    
     def Change_Slider_Mix(self):
         buff_mix = self.ui_main_window.verticalSlider_Mix.value()
 
@@ -233,6 +248,7 @@ class testapp(QObject):
             self.Change_2_all_things(buff_2)
             self.what_change_2 = True
 
+    
     def Change_1_all_things(self, buff):
         # buff от 0 до 32000
         self.ui_main_window.verticalSlider_1.setValue(buff)
@@ -240,6 +256,7 @@ class testapp(QObject):
         self.ui_main_window.doubleSpinBox_value_1.setValue(buff / 32000 * (self.F1_CAPACITY_100 - self.F1_CAPACITY_000)
                                                            + self.F1_CAPACITY_000)
 
+    
     def Change_2_all_things(self, buff):
         # buff от 0 до 32000
         self.ui_main_window.verticalSlider_2.setValue(buff)
@@ -247,6 +264,7 @@ class testapp(QObject):
         self.ui_main_window.doubleSpinBox_value_2.setValue(buff / 32000 * (self.F2_CAPACITY_100 - self.F2_CAPACITY_000)
                                                            + self.F2_CAPACITY_000)
 
+    
     def exit_prog(self):
         if not self.do_tread_run_1:
             self.flow_worker_f1.exit_worker = True
@@ -262,6 +280,7 @@ class testapp(QObject):
 
         sys.exit(app.exec_())
 
+    
     def start_master_1(self):
         self.ui_main_window.pushButton_Start_1.setEnabled(False)
         self.ui_main_window.pushButton_stop_1.setEnabled(True)
@@ -282,7 +301,8 @@ class testapp(QObject):
                                                  self.ui_main_window.progressBar_1,
                                                  self.ui_main_window.lineEdit_value_1,
                                                  self.ui_main_window.lineEdit_gas_1,
-                                                 self.ui_main_window.verticalSlider_1.value())
+                                                 self.ui_main_window.verticalSlider_1.value(),
+                                                 self.ui_main_window.lineEdit_name_max_1)
 
         if not self.bool_thread_garph:
             self.bool_thread_garph = True
@@ -299,6 +319,7 @@ class testapp(QObject):
             self.ui_main_window.doubleSpinBox_value_Mix.setEnabled(True)
             self.change_doubleSpinBox_value_Mix_max()
 
+    
     def start_master_2(self):
         self.ui_main_window.pushButton_Start_2.setEnabled(False)
         self.ui_main_window.pushButton_stop_2.setEnabled(True)
@@ -319,7 +340,8 @@ class testapp(QObject):
                                                  self.ui_main_window.progressBar_2,
                                                  self.ui_main_window.lineEdit_value_2,
                                                  self.ui_main_window.lineEdit_gas_2,
-                                                 self.ui_main_window.verticalSlider_2.value())
+                                                 self.ui_main_window.verticalSlider_2.value(),
+                                                 self.ui_main_window.lineEdit_name_max_2)
 
         if not self.bool_thread_garph:
             self.bool_thread_garph = True
@@ -335,6 +357,7 @@ class testapp(QObject):
             self.ui_main_window.doubleSpinBox_value_Mix.setEnabled(True)
             self.change_doubleSpinBox_value_Mix_max()
 
+    
     def change_doubleSpinBox_value_Mix_max(self):
         time.sleep(0.5)
         if self.F1_name == "Ar        ":
@@ -358,6 +381,7 @@ class testapp(QObject):
         self.ui_main_window.doubleSpinBox_value_Mix.setMinimum(min_set)
         self.ui_main_window.doubleSpinBox_value_Mix.setSingleStep((max_set - min_set) / 32000)
 
+    
     def chenge_SpinBox(self, doubleSpinBox_value_here, max, min, name):
         SpinBox = doubleSpinBox_value_here
         SpinBox.setMaximum(max)
@@ -374,6 +398,17 @@ class testapp(QObject):
             self.F2_CAPACITY_100 = max
             self.F2_CAPACITY_000 = min
 
+    def paint_name_and_max_L(self, lineEdit_name_max_here, max, name):
+        if lineEdit_name_max_here == self.ui_main_window.lineEdit_name_max_1:
+            self.ui_main_window.lineEdit_name_max_1.clear()
+            self.ui_main_window.lineEdit_name_max_1.insert(f"  Gas {name}    Max flow rate "
+                                                           f"{str(round(max))} l/h")
+
+        if lineEdit_name_max_here == self.ui_main_window.lineEdit_name_max_2:
+            self.ui_main_window.lineEdit_name_max_2.clear()
+            self.ui_main_window.lineEdit_name_max_2.insert(f"  Gas {name}    Max flow rate "
+                                                           f"{str(round(max))} l/h")
+    
     def stop_master_1(self):
         self.ui_main_window.pushButton_Start_1.setEnabled(True)
         self.ui_main_window.pushButton_stop_1.setEnabled(False)
@@ -383,6 +418,7 @@ class testapp(QObject):
             self.flow_worker_f1.change_to_zero_signal.emit()
             self.flow_worker_f1.stop_QTheath_in_worker_signal.emit()
 
+    
     def stop_master_2(self):
         self.ui_main_window.pushButton_Start_2.setEnabled(True)
         self.ui_main_window.pushButton_stop_2.setEnabled(False)
@@ -392,6 +428,7 @@ class testapp(QObject):
             self.flow_worker_f2.change_to_zero_signal.emit()
             self.flow_worker_f2.stop_QTheath_in_worker_signal.emit()
 
+    
     def find_com_port_foo(self):  # Поиск активных COM порт и записывает в ComboBox
         self.ui_main_window.comboBox.clear()
         self.ui_main_window.comboBox_2.clear()
@@ -402,6 +439,7 @@ class testapp(QObject):
 
     bool_thread_garph = False  # Запущен поток для графика?
 
+    
     def thread_garph(self):
         # ---------------- Запуск потоков ------------------------
         # Step 2: Create a QThread object
@@ -425,18 +463,26 @@ class testapp(QObject):
         # self.worker_G.read_F_MEASURE_signal.connect(self.read_F_MEASURE)
         # self.worker_G.data_all_signal.connect(self.data_to_thread)
 
+        # ------------ Всплывающие вкладки  ---------------------------
+        self.ui_main_window.actionNew_balloon_CO2.triggered.connect(
+            self.worker_G.co2_consumption_zero, Qt.DirectConnection)  # Сбросить на 0 общий расход CO2
+
         # --------------------------------------------------------
         self.Thread_G.started.connect(self.worker_G.run_worker)
         self.Thread_G.start()
 
-    def paint_gas_consumption_1(self, value):
+    
+    def paint_gas_consumption_1(self, value): # сколько газа потратилось
         self.ui_main_window.lineEdit_gas_1.clear()
         self.ui_main_window.lineEdit_gas_1.insert("  Gas_consumption " + str(round(value, 2)) + " liters")
 
-    def paint_gas_consumption_2(self, value):
+    
+    def paint_gas_consumption_2(self, value): # сколько газа потратилось
         self.ui_main_window.lineEdit_gas_2.clear()
         self.ui_main_window.lineEdit_gas_2.insert("  Gas_consumption " + str(round(value, 2)) + " liters")
 
+
+    
     def paint_graph_in_canvas(self, x_here,
                               y_m1_here, y_m2_here,
                               time_size_here, ticks_here):
@@ -466,6 +512,7 @@ class testapp(QObject):
         # y = np.random.normal(size=1000)
         # self.ui_main_window.graphicsView_FS_1.plot(x, y, pen=None, symbol='o')  # Рисует кружки
 
+    
     def button_pushed_range(self):
         # Ограничение по y (по времени)
         self.ui_main_window.graphicsView_FS_1.setXRange(0, 100, padding=0, update=True)
@@ -475,16 +522,19 @@ class testapp(QObject):
         y_t = np.random.normal(size=100)
         self.ui_main_window.graphicsView_FS_1.plot(x_t, y_t, pen=pg.mkPen('r', width=2))
 
+    
     def write_textEdit(self, test, test_Edit):
         test_Edit.insertPlainText(test)
         test_Edit.verticalScrollBar().setSliderPosition(test_Edit.verticalScrollBar().maximum())
 
+    
     def write_textEdit_red(self, test, test_Edit):
         test_Edit.setTextColor(QtGui.QColor(255, 0, 0))
         test_Edit.insertPlainText(test)
         test_Edit.verticalScrollBar().setSliderPosition(test_Edit.verticalScrollBar().maximum())
         test_Edit.setTextColor(QtGui.QColor(0, 0, 0))
 
+    
     def tread_and_connect(self, name_thread_nubmer):
         if name_thread_nubmer == 1:
             self.do_tread_run_1 = False
@@ -534,6 +584,7 @@ class testapp(QObject):
         name.chenge_val_signal.connect(name.chenger_setpoint)
         name.chenger_progressBar_lineEdit_value_signal.connect(self.chenger_progressBar_lineEdit_value)
         name.alarm_single.connect(self.write_textEdit_red)
+        name.paint_name_and_max_L_signal.connect(self.paint_name_and_max_L, Qt.DirectConnection)
 
         # ----------------------- Кнопки --------------------------------
         self.ui_main_window.pushButton_rerun_flow.pressed.connect(name.close_and_run_master, Qt.DirectConnection)
@@ -543,6 +594,7 @@ class testapp(QObject):
         # self.Thread_macter.started.connect(self.flow_worker.run_worker)
         # self.Thread_macter.start()
 
+    
     def lineEdit_temperature_clear_and_write(self, buff_name, buff_temper, lineEdit_temperature_here):
         lineEdit_temperature_here.clear()
         lineEdit_temperature_here.insert(

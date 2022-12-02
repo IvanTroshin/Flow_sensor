@@ -1,13 +1,8 @@
-from pyqtgraph import PlotWidget
-import numpy as np
-import random
 import propar
-from gui.qt_io import Ui_MainWindow
-from PyQt5.QtCore import QObject, QThread, pyqtSignal, pyqtBoundSignal
+from PyQt5.QtCore import QObject, pyqtSignal
 from PyQt5 import QtWidgets
 import time
 from datetime import datetime
-import gc  # Очистка пямяти
 import os
 
 
@@ -25,9 +20,10 @@ class Flow_worker_class(QObject):
                                  QtWidgets.QProgressBar,
                                  QtWidgets.QLineEdit,
                                  QtWidgets.QLineEdit,
-                                 int)
+                                 int,
+                                 QtWidgets.QLineEdit)
 
-    name_flow_signal = pyqtSignal(str)  # Для имени
+    # name_flow_signal = pyqtSignal(str)  # Для имени
     write_textEdit_signal = pyqtSignal(str, QtWidgets.QTextEdit)  # Для вывода в приложение
     chenge_SpinBox_signal = pyqtSignal(QtWidgets.QDoubleSpinBox, float, float, str)  # бины в ввод
     lineEdit_temperature_singal = pyqtSignal(str, float, QtWidgets.QLineEdit)  # Запись температуры
@@ -39,6 +35,8 @@ class Flow_worker_class(QObject):
     stop_QTheath_in_worker_signal = pyqtSignal()
     alarm_single = pyqtSignal(str, QtWidgets.QTextEdit) # Если газ закончился, то есть расход на клапоне другой сем в програме
 
+    paint_name_and_max_L_signal = pyqtSignal(QtWidgets.QLineEdit, float, str)  # бины в ввод
+    
     def run_master(self, COM_port,
                    textEdit_here,
                    doubleSpinBox_value_here,
@@ -48,7 +46,8 @@ class Flow_worker_class(QObject):
                    progressBar_here,
                    lineEdit_value_here,
                    lineEdit_gas_here,
-                   val_chang):
+                   val_chang,
+                   lineEdit_name_max_here):
         self.COM_port = COM_port
         self.doubleSpinBox_value_here = doubleSpinBox_value_here
         self.lineEdit_temperature_here = lineEdit_temperature_here
@@ -57,8 +56,9 @@ class Flow_worker_class(QObject):
         self.doubleSpinBox_persent_here = doubleSpinBox_persent_here
         self.progressBar_here = progressBar_here
         self.lineEdit_value_here = lineEdit_value_here
-        self.lineEdit_gas_here = lineEdit_gas_here
-        self.value_scrolbar_here = val_chang # Значение расхода в программе
+        self.lineEdit_gas_here = lineEdit_gas_here # Для общего расхода
+        self.lineEdit_name_max_here = lineEdit_name_max_here # Для названия и максимального расхода
+        self.value_scrolbar_here = val_chang # Значение выставленное значение расхода в программе
 
         self.run_master_progress() # все процесы для запуска расходомера
 
@@ -99,7 +99,9 @@ class Flow_worker_class(QObject):
 
             self.chenge_SpinBox_signal.emit(self.doubleSpinBox_value_here, self.CAPACITY_100, self.CAPACITY_000,
                                             name_fluid)
+            self.paint_name_and_max_L_signal.emit(self.lineEdit_name_max_here, self.CAPACITY_100, name_fluid)
 
+    
     def chenger_setpoint(self, val_chang):
         self.value_scrolbar_here = val_chang
         # Номер узла self.nodes[0]['address'] не знаю зачем он
@@ -107,6 +109,7 @@ class Flow_worker_class(QObject):
         user_tag = self.master_flow.read(self.nodes[0]['address'], 1, 1, propar.PP_TYPE_INT16)
         print(f"SETPOINT {user_tag}")
 
+    
     def read_data(self):
 
         # Проверки на ошибки
@@ -130,6 +133,9 @@ class Flow_worker_class(QObject):
 
         F_MEASURE_here = self.master_flow.read(self.nodes[0]['address'], 33, 0,
                                                propar.PP_TYPE_FLOAT)  # F_MEASURE_Thread
+        if self.CAPACITY_100 == 1000:
+            F_MEASURE_here = F_MEASURE_here * 10
+
         name_f = self.master_flow.read(self.nodes[0]['address'],
                                        1, 17, propar.PP_TYPE_STRING)  # FLUID NAME
 
@@ -150,13 +156,18 @@ class Flow_worker_class(QObject):
 
         if F_MEASURE_here - (F_MEASURE_here+0.01)/10 > buff_v \
                 or F_MEASURE_here + (F_MEASURE_here+0.01)/10 < buff_v:
-            date_now = datetime.now().strftime("%d_%m_%Y")
-            self.alarm_single.emit(f"\nDate {date_now}\n", self.textEdit_here)
-            time_now = str(datetime.now().strftime("%X"))
-            self.alarm_single.emit(f"Time {time_now}\n", self.textEdit_here)
-            self.alarm_single.emit("Gas is running out\n", self.textEdit_here)
-            self.Write_data(name_f)
+            if self.alarm_more_3 < 3:
+                self.alarm_more_3 += 1
+            else:
+                date_now = datetime.now().strftime("%d_%m_%Y")
+                self.alarm_single.emit(f"\nDate {date_now}\n", self.textEdit_here)
+                time_now = str(datetime.now().strftime("%X"))
+                self.alarm_single.emit(f"Time {time_now}\n", self.textEdit_here)
+                self.alarm_single.emit("Gas is running out\n", self.textEdit_here)
+                self.Write_data(name_f)
+                self.alarm_more_3 = 0
 
+    
     def change_to_zero(self):
         values = self.master_flow.write(self.nodes[0]['address'], 1, 1, propar.PP_TYPE_INT16, 0)
         print(values)
@@ -170,6 +181,7 @@ class Flow_worker_class(QObject):
     def stop_QTheath_in_worker(self):
         self.finished.emit()
 
+    
     def Write_data_first(self):
         dt = datetime.now()
         dt_test = dt.strftime("%d_%m_%Y")
@@ -183,6 +195,7 @@ class Flow_worker_class(QObject):
         my_file.write(f"Time\tGas\n")
         my_file.close()
 
+    
     def Write_data(self, name):
         dt = datetime.now()
         dt_test = dt.strftime("%d_%m_%Y")
@@ -206,6 +219,7 @@ class Flow_worker_class(QObject):
 
     def __init__(self):
         super(Flow_worker_class, self).__init__()
+        self.lineEdit_name_max_here = None
         self.value_scrolbar_here = None # расход выставленный в программе
         self.nodes = None
         self.master_flow = None
@@ -220,3 +234,4 @@ class Flow_worker_class(QObject):
         self.lineEdit_gas_here = None
         self.CAPACITY_000 = None
         self.CAPACITY_100 = None
+        self.alarm_more_3 = 0 # Если ошибка больше 3 раз
