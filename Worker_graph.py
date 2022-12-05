@@ -89,6 +89,11 @@ class Flow_worker_class_garph(QObject):
                 return
 
     def open_file_befor_consumption(self):
+        dt = datetime.now()
+        filename = os.getcwd() + "\\Data"
+        if not os.path.exists(filename):
+            os.mkdir("Data")
+
         filename = os.getcwd() + "\\Data"
         files = os.listdir(filename)
         regex = "Data_time_"
