@@ -12,6 +12,7 @@ from PyQt5.QtCore import QObject, QThread, pyqtSignal
 from PyQt5.QtCore import *
 
 import os
+import re
 
 pg.setConfigOption('background', 'w')
 
@@ -96,8 +97,18 @@ class testapp(QObject):
         # self.ui_main_window.graphicsView_FS_1.setTitle('The first')        # Название графика
 
     def Test_files(self):
-        QWE = "CO2       "
-        print(QWE.strip(' '))
+        filename = os.getcwd() + "\\Data"
+        files = os.listdir(filename)
+        regex = "Data_time_"
+        l_add = []
+        for i in files:
+            if re.search(regex, i):
+                l_add.append(i)
+
+        if len(l_add) == 0:
+            print("1")
+
+
     
     def Change_from_SpinBox_value_1(self):
         buff = self.ui_main_window.doubleSpinBox_value_1.value()
@@ -602,6 +613,8 @@ class testapp(QObject):
 
     def chenger_progressBar_lineEdit_value(self, value, max, progressBar_here, lineEdit_value_here):
         progressBar_here.setValue(int(round(value / max * 100)))
+        if max == 1000:
+            value = value * 10
         lineEdit_value_here.clear()
         lineEdit_value_here.insert(str(round(value / max * 100, 2)))
 

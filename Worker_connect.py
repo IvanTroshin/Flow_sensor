@@ -133,8 +133,6 @@ class Flow_worker_class(QObject):
 
         F_MEASURE_here = self.master_flow.read(self.nodes[0]['address'], 33, 0,
                                                propar.PP_TYPE_FLOAT)  # F_MEASURE_Thread
-        if self.CAPACITY_100 == 1000:
-            F_MEASURE_here = F_MEASURE_here * 10
 
         name_f = self.master_flow.read(self.nodes[0]['address'],
                                        1, 17, propar.PP_TYPE_STRING)  # FLUID NAME

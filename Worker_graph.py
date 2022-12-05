@@ -5,6 +5,7 @@ import time
 from datetime import datetime
 import gc  # Очистка пямяти
 import os
+import re
 
 from memory_profiler import *
 
@@ -90,8 +91,16 @@ class Flow_worker_class_garph(QObject):
     def open_file_befor_consumption(self):
         filename = os.getcwd() + "\\Data"
         files = os.listdir(filename)
-        files.sort()
-        f_read = open(filename + "\\" + files[-1], "r")
+        regex = "Data_time_"
+        l_add = []
+        for i in files:
+            if re.search(regex, i):
+                l_add.append(i)
+
+        if len(l_add) == 0:
+            return
+
+        f_read = open(filename + "\\" + l_add[-1], "r")
         last_line = f_read.readlines()[-1]
         l = last_line.split()
 
