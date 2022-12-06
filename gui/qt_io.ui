@@ -764,6 +764,7 @@ QProgressBar::chunk
     </property>
     <addaction name="actionFind_com_port"/>
     <addaction name="actionNew_balloon_CO2"/>
+    <addaction name="actionNew_gas_Ar"/>
    </widget>
    <addaction name="menuFile"/>
   </widget>
@@ -776,6 +777,11 @@ QProgressBar::chunk
   <action name="actionNew_balloon_CO2">
    <property name="text">
     <string>New balloon CO2</string>
+   </property>
+  </action>
+  <action name="actionNew_gas_Ar">
+   <property name="text">
+    <string>New gas Ar</string>
    </property>
   </action>
  </widget>

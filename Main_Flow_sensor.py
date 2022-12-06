@@ -477,6 +477,8 @@ class testapp(QObject):
         # ------------ Всплывающие вкладки  ---------------------------
         self.ui_main_window.actionNew_balloon_CO2.triggered.connect(
             self.worker_G.co2_consumption_zero, Qt.DirectConnection)  # Сбросить на 0 общий расход CO2
+        self.ui_main_window.actionNew_gas_Ar.triggered.connect(
+            self.worker_G.ar_consumption_zero, Qt.DirectConnection)  # Сбросить на 0 общий расход Ar
 
         # --------------------------------------------------------
         self.Thread_G.started.connect(self.worker_G.run_worker)

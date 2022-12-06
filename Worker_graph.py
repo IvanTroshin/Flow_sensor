@@ -229,6 +229,12 @@ class Flow_worker_class_garph(QObject):
         elif self.name_1 == "CO2       ":
             self.gas_consumption_m1 = 0
 
+    def ar_consumption_zero(self): # Сбросить на 0 общий расход CO2
+        if self.name_2 == "Ar        ":
+            self.gas_consumption_m2 = 0
+        elif self.name_1 == "Ar        ":
+            self.gas_consumption_m1 = 0
+
     def Write_data_first(self):
         dt = datetime.now()
         dt_test = dt.strftime("%Y_%m_%d")

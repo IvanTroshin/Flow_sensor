@@ -378,8 +378,11 @@ class Ui_MainWindow(object):
         self.actionFind_com_port.setObjectName("actionFind_com_port")
         self.actionNew_balloon_CO2 = QtWidgets.QAction(MainWindow)
         self.actionNew_balloon_CO2.setObjectName("actionNew_balloon_CO2")
+        self.actionNew_gas_Ar = QtWidgets.QAction(MainWindow)
+        self.actionNew_gas_Ar.setObjectName("actionNew_gas_Ar")
         self.menuFile.addAction(self.actionFind_com_port)
         self.menuFile.addAction(self.actionNew_balloon_CO2)
+        self.menuFile.addAction(self.actionNew_gas_Ar)
         self.menubar.addAction(self.menuFile.menuAction())
 
         self.retranslateUi(MainWindow)
@@ -410,4 +413,5 @@ class Ui_MainWindow(object):
         self.menuFile.setTitle(_translate("MainWindow", "Options "))
         self.actionFind_com_port.setText(_translate("MainWindow", "Find COM port"))
         self.actionNew_balloon_CO2.setText(_translate("MainWindow", "New balloon CO2"))
+        self.actionNew_gas_Ar.setText(_translate("MainWindow", "New gas Ar"))
 from pyqtgraph import PlotWidget

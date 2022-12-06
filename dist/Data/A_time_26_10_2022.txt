@@ -1,2 +1,0 @@
-Time	value_on_device_(l/h)_Ar        	value_in_program_(l/h)_Ar        	Gas_consumption_(l/h)_Ar        	Temperature_(C)_Ar        	value_on_device_(l/h)_CO2       	value_in_program_(l/h)_CO2       	Gas_consumption_(l/h)_CO2       	Temperature_(C)_CO2       _C
-16:00:48	0.0	94.0	0.0	28.106	0.0	6.0	0.0	21.347
