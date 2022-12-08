@@ -618,7 +618,7 @@ class testapp(QObject):
         if max == 1000:
             value = value * 10
         lineEdit_value_here.clear()
-        lineEdit_value_here.insert(str(round(value / max * 100, 2)))
+        lineEdit_value_here.insert(str(round(value, 2)))
 
 
 # Press the green button in the gutter to run the script.
