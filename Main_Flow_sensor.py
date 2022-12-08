@@ -615,8 +615,6 @@ class testapp(QObject):
 
     def chenger_progressBar_lineEdit_value(self, value, max, progressBar_here, lineEdit_value_here):
         progressBar_here.setValue(int(round(value / max * 100)))
-        if max == 1000:
-            value = value * 10
         lineEdit_value_here.clear()
         lineEdit_value_here.insert(str(round(value, 2)))
 
