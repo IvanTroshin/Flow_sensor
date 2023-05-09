@@ -547,6 +547,15 @@ class testapp(QObject):
         test_Edit.verticalScrollBar().setSliderPosition(test_Edit.verticalScrollBar().maximum())
         test_Edit.setTextColor(QtGui.QColor(0, 0, 0))
 
+    def alarm_close_valve_all(self):
+        self.ui_main_window.verticalSlider_Mix.setValue(0)
+        self.ui_main_window.verticalSlider_1.setValue(0)
+        self.ui_main_window.verticalSlider_2.setValue(0)
+
+        self.Change_Slider_Mix() # Выставляет на 0 через общай
+        self.Change_Slider_1()  # Выставляет на 0 для первого, страховака
+        self.Change_Slider_2()  # Выставляет на 0 для второго, страховака
+
     
     def tread_and_connect(self, name_thread_nubmer):
         if name_thread_nubmer == 1:
@@ -596,8 +605,9 @@ class testapp(QObject):
         name.lineEdit_temperature_singal.connect(self.lineEdit_temperature_clear_and_write)
         name.chenge_val_signal.connect(name.chenger_setpoint)
         name.chenger_progressBar_lineEdit_value_signal.connect(self.chenger_progressBar_lineEdit_value)
-        name.alarm_single.connect(self.write_textEdit_red)
         name.paint_name_and_max_L_signal.connect(self.paint_name_and_max_L, Qt.DirectConnection)
+        name.alarm_single.connect(self.write_textEdit_red)
+        name.alarm_close_valve_single.connect(self.alarm_close_valve_all) # Если пять минут нету газа, закрываются расходомеры
 
         # ----------------------- Кнопки --------------------------------
         self.ui_main_window.pushButton_rerun_flow.pressed.connect(name.close_and_run_master, Qt.DirectConnection)

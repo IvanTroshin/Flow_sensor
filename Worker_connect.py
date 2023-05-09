@@ -34,6 +34,7 @@ class Flow_worker_class(QObject):
     change_to_zero_signal = pyqtSignal()
     stop_QTheath_in_worker_signal = pyqtSignal()
     alarm_single = pyqtSignal(str, QtWidgets.QTextEdit) # Если газ закончился, то есть расход на клапоне другой сем в програме
+    alarm_close_valve_single = pyqtSignal() # 5 минут нету газа
 
     paint_name_and_max_L_signal = pyqtSignal(QtWidgets.QLineEdit, float, str)  # бины в ввод
     
@@ -152,10 +153,11 @@ class Flow_worker_class(QObject):
                                                             self.progressBar_here,
                                                             self.lineEdit_value_here)
 
+        # Если расход не выставлен на нужное значение
         if F_MEASURE_here - (F_MEASURE_here+0.01)/10 > buff_v \
                 or F_MEASURE_here + (F_MEASURE_here+0.01)/10 < buff_v:
-            if self.alarm_more_3 < 3:
-                self.alarm_more_3 += 1
+            if self.alarm_more_5 < 5:
+                self.alarm_more_5 += 1
             else:
                 date_now = datetime.now().strftime("%d_%m_%Y")
                 self.alarm_single.emit(f"\nDate {date_now}\n", self.textEdit_here)
@@ -163,7 +165,19 @@ class Flow_worker_class(QObject):
                 self.alarm_single.emit(f"Time {time_now}\n", self.textEdit_here)
                 self.alarm_single.emit("Gas is running out\n", self.textEdit_here)
                 self.Write_data(name_f)
-                self.alarm_more_3 = 0
+                self.alarm_more_5 = 0
+
+            time_now_there = datetime.now()
+            if self.alarm_stop_all == 451:
+                self.alarm_stop_all = time_now_there
+            # Если пять минут нету газа, закрываются расходомеры
+            elif str(time_now_there - self.alarm_stop_all) > "0:05:01":
+                self.alarm_single.emit(f"Close the valves. {time_now}\n", self.textEdit_here)
+                self.alarm_close_valve_single.emit()
+                self.Write_data("Close the valves")
+
+        else:
+            self.alarm_stop_all = 451
 
     
     def change_to_zero(self):
@@ -232,4 +246,5 @@ class Flow_worker_class(QObject):
         self.lineEdit_gas_here = None
         self.CAPACITY_000 = None
         self.CAPACITY_100 = None
-        self.alarm_more_3 = 0 # Если ошибка больше 3 раз
+        self.alarm_more_5 = 0 # Если ошибка больше 5 раз
+        self.alarm_stop_all = 451  # больше 5 мин закрываются расходомеры
