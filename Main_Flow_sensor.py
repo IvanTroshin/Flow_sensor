@@ -188,7 +188,7 @@ class testapp(QObject):
             buff_f2 = buff_CO2
 
         self.ui_main_window.verticalSlider_Mix.setValue(
-            buff_mix / self.ui_main_window.doubleSpinBox_value_Mix.maximum() * 100000)
+            int(buff_mix / self.ui_main_window.doubleSpinBox_value_Mix.maximum() * 100000))
 
         buff_1 = round(32000 * (buff_f1 - self.F1_CAPACITY_000) / (self.F1_CAPACITY_100 - self.F1_CAPACITY_000))
         if self.what_change_1:
