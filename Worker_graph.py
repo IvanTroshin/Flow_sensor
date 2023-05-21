@@ -119,8 +119,9 @@ class Flow_worker_class_garph(QObject):
         self.time_start_pro = datetime.now()
         tdelta = self.time_start_pro - self.time_stop_pro
 
-        time_gap = 2  # Каждые 2 секунд
+        time_gap = 5  # Каждые 5 секунд
         if tdelta.total_seconds() > time_gap:
+            self.time_stop_pro = datetime.now()
             self.X_time_1[1] += 1
             if self.X_time_1[1] % 6 == 0:
                 self.X_time_1[0] = datetime.now().strftime("%X")
@@ -143,14 +144,15 @@ class Flow_worker_class_garph(QObject):
                     self.reload_signal_1.emit()  # Перезапуск расходомера
                     time.sleep(0.1)
 
+            time_gap_con = tdelta.total_seconds() + (datetime.now() - self.time_stop_pro).total_seconds()
             if self.y_buff_1 is not None:
                 self.y_main_plot_m1.append(self.y_buff_1)  # В конец масива
-                self.gas_consumption_m1 = self.gas_consumption_m1 + self.y_buff_1 / 3600 * time_gap  # Расход газа
+                self.gas_consumption_m1 = self.gas_consumption_m1 + self.y_buff_1 / 3600 * time_gap_con  # Расход газа
                 self.gas_consumption_signal_1.emit(self.gas_consumption_m1)
             else:
                 problem = 1  # Проблема, поставить красные точки если Nan
                 self.y_main_plot_m1.append(0)  # В конец масива
-                self.gas_consumption_m1 = self.gas_consumption_m1 + 0 / 3600 * time_gap  # Расход газа
+                self.gas_consumption_m1 = self.gas_consumption_m1 + 0 / 3600 * time_gap_con  # Расход газа
                 self.gas_consumption_signal_1.emit(self.gas_consumption_m1)
 
             # ----------------------------------------------------------------
@@ -169,14 +171,15 @@ class Flow_worker_class_garph(QObject):
                     self.reload_signal_2.emit()  # Перезапуск расходомера
                     time.sleep(0.1)
 
+            time_gap_con = tdelta.total_seconds() + (datetime.now() - self.time_stop_pro).total_seconds()
             if self.y_buff_2 is not None:
                 self.y_main_plot_m2.append(self.y_buff_2)  # В конец масива
-                self.gas_consumption_m2 = self.gas_consumption_m2 + self.y_buff_2 / 3600 * time_gap  # Расход
+                self.gas_consumption_m2 = self.gas_consumption_m2 + self.y_buff_2 / 3600 * time_gap_con  # Расход
                 self.gas_consumption_signal_2.emit(self.gas_consumption_m2)
             else:
                 problem = 1  # Проблема, поставить красные точки если Nan
                 self.y_main_plot_m2.append(0)  # В конец масива
-                self.gas_consumption_m2 = self.gas_consumption_m2 + 0 / 3600 * time_gap  # Расход
+                self.gas_consumption_m2 = self.gas_consumption_m2 + 0 / 3600 * time_gap_con  # Расход
                 self.gas_consumption_signal_2.emit(self.gas_consumption_m2)
 
             size_range_all_data = 3600
@@ -194,6 +197,8 @@ class Flow_worker_class_garph(QObject):
                 del self.x_t_plot[0]
                 del self.y_main_plot_m1[0]
                 del self.y_main_plot_m2[0]
+                del self.X_time_1[1]
+                self.X_time_1 = [0, 0]
                 gc.collect()
 
             self.graph_signal.emit(self.x_t_plot_name,
@@ -203,7 +208,7 @@ class Flow_worker_class_garph(QObject):
             if bool_write:
                 self.Write_data() # Запись в файл
 
-            self.time_stop_pro = datetime.now()
+
 
     
     def setAnswer_1(self, value, name, value_p, tempr):
