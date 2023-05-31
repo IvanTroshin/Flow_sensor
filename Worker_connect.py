@@ -171,7 +171,7 @@ class Flow_worker_class(QObject):
             if self.alarm_stop_all == 451:
                 self.alarm_stop_all = time_now_there
             # Если пять минут нету газа, закрываются расходомеры
-            elif str(time_now_there - self.alarm_stop_all) > "0:05:01":
+            elif str(time_now_there - self.alarm_stop_all) > "0:00:21":
                 self.alarm_single.emit(f"Close the valves. {time_now}\n", self.textEdit_here)
                 self.alarm_close_valve_single.emit()
                 self.Write_data("Close the valves")
