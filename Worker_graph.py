@@ -192,6 +192,13 @@ class Flow_worker_class_garph(QObject):
 
             self.ticks = [list(zip(range(len(self.x_t_plot)), self.x_t_plot))]
 
+            self.graph_signal.emit(self.x_t_plot_name,
+                                   self.y_main_plot_m1, self.y_main_plot_m2,
+                                   self.time_size, self.ticks)
+
+            if bool_write:
+                self.Write_data() # Запись в файл
+            
             if len(self.x_t_plot) > size_range_all_data:  # Ограничение по времени
                 # del self.x_t_plot_name[0]
                 del self.x_t_plot[0]
@@ -200,13 +207,6 @@ class Flow_worker_class_garph(QObject):
                 del self.X_time_1[1]
                 self.X_time_1 = [0, 0]
                 gc.collect()
-
-            self.graph_signal.emit(self.x_t_plot_name,
-                                   self.y_main_plot_m1, self.y_main_plot_m2,
-                                   self.time_size, self.ticks)
-
-            if bool_write:
-                self.Write_data() # Запись в файл
 
 
 
