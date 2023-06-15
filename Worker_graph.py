@@ -56,7 +56,7 @@ class Flow_worker_class_garph(QObject):
     reload_signal_2 = pyqtSignal()  # Перезапуск расходомера, выключение включение
 
     X_time_1 = [0, 0]  # Время изменения
-    time_size = 60  # шприна по X
+    time_size = 120  # шприна по X
 
     exit_worker = False  # Остановить поток
 
@@ -204,9 +204,10 @@ class Flow_worker_class_garph(QObject):
                 del self.x_t_plot[0]
                 del self.y_main_plot_m1[0]
                 del self.y_main_plot_m2[0]
-                del self.X_time_1[1]
-                self.X_time_1 = [0, 0]
                 gc.collect()
+
+            if self.X_time_1[1] > size_range_all_data:  # Ограничение по времени
+                self.X_time_1 = [0, 0]
 
 
 
